@@ -16,7 +16,7 @@
         <%= link_to(image_tag(history.picture.thumb), history) if history.picture? %>
         <div class="caption">
           <h3><%= history.title %></h3>
-          <p>Created by @<strong><%= link_to history.user.name, mystories_user_path(history.user.name) %></strong><small>, <%= time_ago_in_words(history.created_at) %> ago</small></p>
+          <small><%= time_ago_in_words(history.created_at) %> ago</small>
           <p><%= history.content.truncate(150)  %></p>
           <p><%= link_to 'Show', history, class: "btn btn-primary" %>
           <% if user_signed_in? && current_user.id == history.user.id %>

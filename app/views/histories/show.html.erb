@@ -3,7 +3,11 @@
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-          <%= image_tag(@history.picture_url, style: "max-width: 100%; border-radius: 10px;") if @history.picture? %>
+          <div class="">
+            <%= image_tag(@history.picture_url, style: "max-width: 100%; border-radius: 10px;") if @history.picture? %>
+          </div>
+          <br>
+          <p><strong><%= link_to @history.user.name, mystories_user_path(@history.user.name) %></strong></p>
         </div>
         <div class="col-md-2"></div>
       </div>
@@ -28,12 +32,13 @@
       <div class="row">
         <div class="col-md-8"></div>
         <div class="col-md-2">
-          <p><%= link_to 'Edit', edit_history_path(@history), class: "btn btn-warning btn-sm" %> <%= link_to 'Back', histories_path, class: "btn btn-info btn-sm" %></p>
+          <% if user_signed_in? && current_user.id == @history.user.id %>
+            <p><%= link_to 'Edit', edit_history_path(@history), class: "btn btn-warning btn-sm" %> <%= link_to 'Back', histories_path, class: "btn btn-info btn-sm" %></p>
+          <% else %>
+            <p><%= link_to 'Back', histories_path, class: "btn btn-info btn-sm" %></p>
+          <% end %>
         </div>
         <div class="col-md-2"></div>
       </div>
 
 </div>
-
-
-
